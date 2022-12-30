@@ -1,10 +1,24 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
-      <h1>React Redux Toolskit</h1>
+    <div className="App">
+      {/*injecting store in application */}
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
